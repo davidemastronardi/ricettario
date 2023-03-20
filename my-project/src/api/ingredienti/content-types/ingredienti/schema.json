@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ingredientis",
+  "info": {
+    "singularName": "ingredienti",
+    "pluralName": "ingredientis",
+    "displayName": "ingredienti"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "quantita": {
+      "type": "string"
+    },
+    "ricette": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ricette.ricette",
+      "inversedBy": "ingredientis"
+    }
+  }
+}

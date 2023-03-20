@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ricettes",
+  "info": {
+    "singularName": "ricette",
+    "pluralName": "ricettes",
+    "displayName": "ricette",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titolo": {
+      "type": "string"
+    },
+    "preparazione": {
+      "type": "richtext"
+    },
+    "ingredientis": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ingredienti.ingredienti",
+      "mappedBy": "ricette"
+    }
+  }
+}
