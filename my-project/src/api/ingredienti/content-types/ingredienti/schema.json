@@ -16,12 +16,6 @@
     },
     "quantita": {
       "type": "string"
-    },
-    "ricette": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::ricette.ricette",
-      "inversedBy": "ingredientis"
     }
   }
 }

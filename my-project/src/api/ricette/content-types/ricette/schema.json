@@ -18,11 +18,19 @@
     "preparazione": {
       "type": "richtext"
     },
-    "ingredientis": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::ingredienti.ingredienti",
-      "mappedBy": "ricette"
+    "anteprima": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "ingredients": {
+      "type": "json"
     }
   }
 }
