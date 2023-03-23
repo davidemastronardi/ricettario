@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const Ricette = ({ ricette, setRicette, getDati }) => {
+  
   function renderIngredienti() {
     return ricette.attributes.ingredients.map((ingrediente, i) => {
       return (

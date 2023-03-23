@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Ricette from "../components/Ricette";
+import AddRecipe from "./AddRecipe";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const [ricette, setRicette] = useState([]);
-
   const getDati = () => {
     fetch("http://localhost:1337/api/ricettes?populate=*")
       .then((response) => response.json())
