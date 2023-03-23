@@ -1,7 +1,6 @@
 import React from "react";
 
 const AddRecipe = () => {
-
   const handleSubmit = () => {
     const data = {
       data: {
@@ -15,7 +14,7 @@ const AddRecipe = () => {
       },
     };
 
-    fetch(process.env.REACT_APP_BASE_PATH+"/ricettes", {
+    fetch(process.env.REACT_APP_BASE_PATH + "/ricettes", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
@@ -30,10 +29,15 @@ const AddRecipe = () => {
   };
 
   return (
-    <div>
-      <button className="bg-green-700">Aggiungi un ingrediente</button>
-
-      <button className="bg-red-600" onClick={handleSubmit}>
+    <div className="w-full h-screen flex flex-col justify-between ">
+      <div className="flex flex-col items-center">
+        <button className="w-full bg-green-700">Aggiungi un ingrediente</button>
+        <input
+          className="w-[60%] border-[2px] border-gray-400 rounded-md "
+          type="text"
+        />
+      </div>
+      <button className=" bg-slate-900 w-full p-5 text-[30px] font-semibold text-white " onClick={handleSubmit}>
         Salva ricetta
       </button>
     </div>
