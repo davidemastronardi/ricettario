@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Ricette from "../components/Ricette";
-import AddRecipe from "./AddRecipe";
 
 const Home = () => {
   const navigate = useNavigate();

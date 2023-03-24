@@ -1,23 +1,24 @@
-import React, { useEffect, useRef, useState, Component  } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Delete from "../img/delete.svg";
 
 const AddRecipe = () => {
   const [value, setValue] = useState("");
   const [valueIngredient, setValueIngredient] = useState("");
-  const [addIngredient, setAddIngredient] = useState(true);
   const inputTitle = useRef();
   const inputIngredient = useRef();
   const [listIngredient, setListIngredient] = useState([]);
 
-  useEffect(() => {
-    console.log(listIngredient);
-  }, [listIngredient]);
-
   function renderListIngredients() {
     return listIngredient.map((ingredient, i) => {
       return (
-        <li key={i}>
-          {ingredient}
-          <button onClick={() => {}}>elimina</button>
+        <li className="flex justify-between  bg-slate-300 mt-3 p-2" key={i}>
+          <p>{ingredient}</p>
+          <p></p>
+          <img
+            className="w-[30px] ml-1"
+            src={Delete}
+            alt=""
+          />
         </li>
       );
     });
@@ -29,9 +30,7 @@ const AddRecipe = () => {
         preparazione: "mettere il tacchino nel forno",
         titolo: value,
         ingredients: [
-          { name: "cazzo di budda", qt: "500", unit: "g" },
-          { name: "cazzo di budda", qt: "500", unit: "g" },
-          { name: "cazzo di budda", qt: "500", unit: "g" },
+          { name: {listIngredient}, qt: "500", unit: "g" }
         ],
       },
     };
@@ -40,7 +39,6 @@ const AddRecipe = () => {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
-        
       },
       body: JSON.stringify(data),
     })
@@ -65,34 +63,30 @@ const AddRecipe = () => {
           type="text"
           placeholder="Titolo"
         />
-        <button
-          onClick={() => {
-            setAddIngredient(!addIngredient);
-          }}
-          className="w-[70%] mt-5 text-[20px] font-semibold bg-slate-900 text-white p-3 rounded-3xl"
-        >
+        <div className="w-full mt-5 text-[30px] text-center font-semibold bg-slate-500 text-white p-4">
           Aggiungi ingredienti
+        </div>
+       
+        <div className="w-full flex flex-col justify-center items-center gap-2 mt-5 ">
+          <input
+            onChange={(e) => {
+                  setValueIngredient(e.target.value);
+            }}
+            ref={inputIngredient}
+            className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md"
+            type="text"
+            placeholder="Ingrediente"
+          />
+           <button
+          onClick={() => {
+            setListIngredient([...listIngredient, valueIngredient]);
+          }}
+          className="text-[30px] text-center bg-gray-500 text-white px-10 rounded-md font-bold"
+        >
+          +
         </button>
-        {!addIngredient && (
-          <div className="w-full flex justify-center items-baseline gap-2 mt-5 ">
-            <input
-              ref={inputIngredient}
-              className=" p-2 border-[2px] border-gray-500  rounded-md"
-              type="text"
-              placeholder="Ingrediente"
-            />
-            <button
-              onClick={() => {
-                setListIngredient([...listIngredient, valueIngredient]); 
-              }}
-            
-              className=" text-[30px] bg-gray-500 text-white rounded-full px-3 font-bold flex items-center justify-center"
-            >
-              <span>+</span>
-            </button>
-          </div>
-        )}
-        <div className="mt-5 text-[20px] flex flex-wrap">
+        </div>
+        <div className="text-[20px] w-full px-3">
           {/* render array ingredienti */}
           <ul>{renderListIngredients()}</ul>
         </div>
