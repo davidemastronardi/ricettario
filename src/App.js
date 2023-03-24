@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import AddRecipe from "./pages/AddRecipe";
 import Home from "./pages/Home";
+import EditRecipe from "./pages/EditRecipe";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Routes>
         <Route element={<Home />} path="/"></Route>
         <Route element={<AddRecipe />} path="/addRecipe"></Route>
+        <Route element={<EditRecipe />} path="/editRecipe"></Route>
         </Routes>
       </Router>
     </div>

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { conversCapitalize } from "../utils";
 
 const Ricette = ({ ricette, setRicette, getDati }) => {
+  const navigate = useNavigate();
+
   function renderIngredienti() {
     return ricette.attributes.ingredients.map((ingrediente, i) => {
       return (
@@ -37,7 +40,7 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
     <div className="">
       <ul className="w-full mt-5 bg-slate-300 p-3">
         <li>
-          <h1 className="text-[20px] font-semibold text-center">
+          <h1 className="text-[20px] font-bold text-center">
             {conversCapitalize(ricette.attributes.titolo)}
           </h1>
           <ul className="  w-full text-white  bg-slate-500 p-3 mt-4 rounded-md text-[12px] flex flex-col items-center">
@@ -46,7 +49,12 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
           <p className="text-center mt-4">{ricette.attributes.preparazione}</p>
         </li>
         <div className="flex justify-between mt-5 text-white font-semibold">
-          <button className="w-full mx-4 p-2 bg-slate-900 rounded-md">
+          <button
+            onClick={() => {
+              navigate("/editRecipe");
+            }}
+            className="w-full mx-4 p-2 bg-slate-900 rounded-md"
+          >
             MODIFICA
           </button>
           <button
