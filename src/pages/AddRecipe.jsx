@@ -74,7 +74,7 @@ const AddRecipe = () => {
           Inserisci Titolo:
         </h1>
         <input
-          defaultValue={"porcodio"}
+          value={value}
           onChange={(e) => {
             setValue(e.target.value);
           }}
@@ -114,9 +114,7 @@ const AddRecipe = () => {
           >
             <option value="Intero">Intero</option>
             <option value="gr">gr</option>
-            <option value="l">
-              L
-            </option>
+            <option value="l">L</option>
             <option value="ml">ml</option>
           </select>
 

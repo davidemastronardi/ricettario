@@ -13,7 +13,6 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
       );
     });
   }
-  console.log(ricette);
 
   const deleteRicetta = () => {
     fetch(process.env.REACT_APP_BASE_PATH + `/ricettes/${ricette.id}`, {
