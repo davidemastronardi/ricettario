@@ -6,7 +6,7 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
     return ricette.attributes.ingredients.map((ingrediente, i) => {
       return (
         <li key={i}>
-          <span> {ingrediente.name}</span> <span>{ingrediente.qt}</span>
+          <span> {ingrediente.name}</span><span>{ingrediente.qt}</span>
         </li>
       );
     });

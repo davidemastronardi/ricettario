@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import Delete from "../img/delete.svg";
+import { useNavigate } from "react-router-dom";
 
 const AddRecipe = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [valueIngredient, setValueIngredient] = useState("");
   const inputTitle = useRef();
@@ -94,7 +96,10 @@ const AddRecipe = () => {
       </div>
       <button
         className=" bg-slate-900 w-full p-5 text-[30px] font-semibold text-white "
-        onClick={handleSubmit}
+        onClick={()=>{ handleSubmit()
+          navigate("/")
+        }}
+        
       >
         Salva ricetta
       </button>
