@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { conversCapitalize } from "../utils";
+
 
 const Ricette = ({ ricette, setRicette, getDati }) => {
   
@@ -6,12 +8,12 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
     return ricette.attributes.ingredients.map((ingrediente, i) => {
       return (
         <li className="text-[15px]" key={i}>
-          {ingrediente.name}
+          {conversCapitalize(ingrediente.name)}
         </li>
       );
     });
   }
-  console.log(ricette.attributes.ingredients);
+  console.log(ricette);
 
   const deleteRicetta = () => {
     fetch(process.env.REACT_APP_BASE_PATH + `/ricettes/${ricette.id}`, {
@@ -33,7 +35,8 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
       <ul className="w-full mt-5 bg-slate-300 p-3">
         <li>
           <h1 className="text-[20px] font-semibold text-center">
-            {ricette.attributes.titolo}
+            {conversCapitalize(ricette.attributes.titolo)}
+            
           </h1>
           <ul className="  w-full text-white bg-slate-500 p-3 mt-4 rounded-md text-[12px]">
             {renderIngredienti()}
@@ -41,12 +44,12 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
           <p className="text-center mt-4">{ricette.attributes.preparazione}</p>
         </li>
         <div className="flex justify-between mt-5 text-white font-semibold">
-          <button className="w-full mx-4 p-2 bg-slate-500 rounded-md">
+          <button className="w-full mx-4 p-2 bg-slate-900 rounded-md">
             MODIFICA
           </button>
           <button
             onClick={deleteRicetta}
-            className="w-full mx-4 p-2 bg-slate-500 rounded-md"
+            className="w-full mx-4 p-2 bg-red-700 rounded-md"
           >
             ELIMINA
           </button>
