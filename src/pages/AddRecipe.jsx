@@ -87,7 +87,6 @@ const AddRecipe = () => {
         </button>
         </div>
         <div className="text-[20px] w-full px-3">
-          {/* render array ingredienti */}
           <ul>{renderListIngredients()}</ul>
         </div>
         <div>
