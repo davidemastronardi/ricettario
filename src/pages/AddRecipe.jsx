@@ -9,19 +9,25 @@ const AddRecipe = () => {
   const [value, setValue] = useState("");
   const [valueIngredient, setValueIngredient] = useState("");
   const [valueQuantita, setValueQuantita] = useState("");
+  const [valueUnit, setValueUnit] = useState("");
+  const [valuePreparazione, setValuePreparazione] = useState("");
   const [listIngredient, setListIngredient] = useState([]);
 
-  useEffect(() => {
-    console.log(listIngredient);
-  }, [listIngredient]);
 
   function renderListIngredients() {
     return listIngredient.map((ingredient, i) => {
-    
       return (
-        <li className="flex justify-between  bg-slate-300 mt-3 p-2" key={i}>
-          {conversCapitalize(ingredient.name)}
-          {ingredient.qt}
+        <li className="flex justify-between bg-slate-300 mt-3 p-2" key={i}>
+          <div className="w-full flex items-baseline gap-5">
+            <div className="font-semibold">
+              {conversCapitalize(ingredient.name)}
+            </div>
+            <div className="text-[15px] flex gap-2">
+              {ingredient.qt}
+              <div>{ingredient.unit}</div>
+            </div>
+            <div>{ingredient.preparazione}</div>
+          </div>
 
           <img
             onClick={() =>
@@ -41,7 +47,7 @@ const AddRecipe = () => {
   const handleSubmit = () => {
     const data = {
       data: {
-        preparazione: "mettere il tacchino nel forno",
+        preparazione: valuePreparazione,
         titolo: value,
         ingredients: listIngredient,
       },
@@ -65,12 +71,12 @@ const AddRecipe = () => {
       <div className="flex flex-col items-center relative">
         <img
           onClick={() => navigate("/")}
-          className="w-[35px] absolute left-0 top-3 m-2"
+          className="w-[30px] absolute left-0 top-2 m-2"
           src={Return}
-          alt=""
+          alt="return"
         />
 
-        <h1 className="w-full p-3 text-center text-[30px] text-white font-semibold bg-slate-500">
+        <h1 className="w-full p-3 text-center text-[25px] text-white font-semibold bg-slate-500">
           Inserisci Titolo:
         </h1>
         <input
@@ -82,7 +88,7 @@ const AddRecipe = () => {
           type="text"
           placeholder="Titolo"
         />
-        <div className="w-full mt-5 text-[30px] text-center font-semibold bg-slate-500 text-white p-4">
+        <div className="w-full mt-5 text-[25px] text-center font-semibold bg-slate-500 text-white p-4">
           Aggiungi ingredienti
         </div>
 
@@ -110,11 +116,12 @@ const AddRecipe = () => {
             className="border-gray-500 border-[2px] p-1 rounded-md w-[80%]"
             name="Misure"
             id="Misure"
-            onChange={(e) => console.log(e.target.value)}
+            onChange={(e) => setValueUnit(e.target.value)}
           >
-            <option value="Intero">Intero</option>
+            <option value=""></option>
+            <option value="pezzo/i">pezzo/i</option>
             <option value="gr">gr</option>
-            <option value="l">L</option>
+            <option value="L">L</option>
             <option value="ml">ml</option>
           </select>
 
@@ -122,7 +129,7 @@ const AddRecipe = () => {
             onClick={() => {
               setListIngredient([
                 ...listIngredient,
-                { name: valueIngredient, qt: valueQuantita, unit: "g" },
+                { name: valueIngredient, qt: valueQuantita, unit: valueUnit },
               ]);
               setValueIngredient("");
               setValueQuantita("");
@@ -132,12 +139,25 @@ const AddRecipe = () => {
             +
           </button>
         </div>
-        <div className="text-[20px] w-full px-3 mb-[100px]">
+
+        <div className="text-[20px] w-full px-3 ">
           <ul>{renderListIngredients()}</ul>
         </div>
+        <div className=" w-full mt-5 text-[25px] text-center font-semibold bg-slate-500 text-white p-4">
+          <h1>Aggiungi preparazione</h1>
+        </div>
+        <textarea
+         onChange={(e) => {
+          setValuePreparazione(e.target.value);
+        }}
+          className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md mb-[100px] mt-5"
+          cols="30"
+          rows="10"
+          placeholder="Scrivi la preparazione..."
+        ></textarea>
       </div>
       <button
-        className=" bg-slate-900 w-full p-5 text-[30px] font-semibold text-white fixed bottom-0"
+        className=" bg-green-600 w-full p-5 text-[30px] font-semibold text-white fixed bottom-0"
         onClick={() => {
           handleSubmit();
           navigate("/");

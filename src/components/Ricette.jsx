@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { conversCapitalize } from "../utils";
 
-
 const Ricette = ({ ricette, setRicette, getDati }) => {
-  
   function renderIngredienti() {
     return ricette.attributes.ingredients.map((ingrediente, i) => {
       return (
-        <li className="text-[15px]" key={i}>
-          {conversCapitalize(ingrediente.name)}
+        <li className="text-[20px] mb-3" key={i}>
+          <div className="flex gap-2">
+            {"- " + conversCapitalize(ingrediente.name)}
+            <div className="flex gap-1 text-[13px] items-center">
+              {ingrediente.qt}
+              <div>{ingrediente.unit}</div>
+            </div>
+          </div>
         </li>
       );
     });
@@ -35,9 +39,8 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
         <li>
           <h1 className="text-[20px] font-semibold text-center">
             {conversCapitalize(ricette.attributes.titolo)}
-            
           </h1>
-          <ul className="  w-full text-white bg-slate-500 p-3 mt-4 rounded-md text-[12px]">
+          <ul className="  w-full text-white  bg-slate-500 p-3 mt-4 rounded-md text-[12px] flex flex-col items-center">
             {renderIngredienti()}
           </ul>
           <p className="text-center mt-4">{ricette.attributes.preparazione}</p>
