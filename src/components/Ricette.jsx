@@ -5,12 +5,13 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
   function renderIngredienti() {
     return ricette.attributes.ingredients.map((ingrediente, i) => {
       return (
-        <li key={i}>
-          <span> {ingrediente.name}</span><span>{ingrediente.qt}</span>
+        <li className="text-[15px]" key={i}>
+          {ingrediente.name}
         </li>
       );
     });
   }
+  console.log(ricette.attributes.ingredients);
 
   const deleteRicetta = () => {
     fetch(process.env.REACT_APP_BASE_PATH + `/ricettes/${ricette.id}`, {

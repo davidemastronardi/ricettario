@@ -6,8 +6,6 @@ const AddRecipe = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
   const [valueIngredient, setValueIngredient] = useState("");
-  const inputTitle = useRef();
-  const inputIngredient = useRef();
   const [listIngredient, setListIngredient] = useState([]);
 
   function renderListIngredients() {
@@ -56,7 +54,7 @@ const AddRecipe = () => {
           Inserisci Titolo:
         </h1>
         <input
-          ref={inputTitle}
+          
           onChange={(e) => {
             setValue(e.target.value);
           }}
@@ -70,10 +68,11 @@ const AddRecipe = () => {
        
         <div className="w-full flex flex-col justify-center items-center gap-2 mt-5 ">
           <input
+          value={valueIngredient}
             onChange={(e) => {
                   setValueIngredient(e.target.value);
             }}
-            ref={inputIngredient}
+            
             className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md"
             type="text"
             placeholder="Ingrediente"
@@ -81,6 +80,7 @@ const AddRecipe = () => {
            <button
           onClick={() => {
             setListIngredient([...listIngredient, valueIngredient]);
+            setValueIngredient("")
           }}
           className="text-[30px] text-center bg-gray-500 text-white px-10 rounded-md font-bold"
         >

@@ -27,7 +27,7 @@ const Home = () => {
   
   return (
     <div>
-      <div className="p-4 relative mb-[85px]">
+      <div className="p-4 mb-[85px]">
         <h1 className="text-center text-[40px] font-bold">Le mie Ricette</h1>
         {renderRicette()}
       </div>
