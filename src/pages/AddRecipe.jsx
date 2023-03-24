@@ -12,8 +12,7 @@ const AddRecipe = () => {
     return listIngredient.map((ingredient, i) => {
       return (
         <li className="flex justify-between  bg-slate-300 mt-3 p-2" key={i}>
-          <p>{ingredient}</p>
-          <p></p>
+          {ingredient}
           <img
             className="w-[30px] ml-1"
             src={Delete}
@@ -30,7 +29,7 @@ const AddRecipe = () => {
         preparazione: "mettere il tacchino nel forno",
         titolo: value,
         ingredients: [
-          { name: {listIngredient}, qt: "500", unit: "g" }
+          { name: listIngredient, qt: "500", unit: "g" }
         ],
       },
     };
