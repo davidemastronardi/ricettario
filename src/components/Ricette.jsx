@@ -51,8 +51,8 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
         <div className="flex justify-between mt-5 text-white font-semibold">
           <button
             onClick={() => {
-              navigate("/editRecipe");
-              setRicette(ricette.id)
+              navigate(`/editRecipe/${ricette.id}`);
+              console.log(ricette.id)
             }}
             className="w-full mx-4 p-2 bg-slate-900 rounded-md"
           >

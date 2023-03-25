@@ -4,8 +4,9 @@ import Ricette from "../components/Ricette";
 
 const Home = () => {
   const navigate = useNavigate();
-
   const [ricette, setRicette] = useState([]);
+
+
   const getDati = () => {
     fetch("http://localhost:1337/api/ricettes?populate=*")
       .then((response) => response.json())
@@ -31,7 +32,7 @@ const Home = () => {
         <h1 className="text-center text-[40px] font-bold">Le mie Ricette</h1>
         {renderRicette()}
       </div>
-      <button className="fixed bottom-0 bg-slate-900 w-full p-5 text-[30px] font-semibold text-white " onClick={() => navigate("/addRecipe")}>CREA NUOVA</button>
+      <button className="fixed bottom-0 bg-slate-900 w-full p-5 text-[30px] font-semibold text-white " onClick={() => navigate("/addRecipe/")}>CREA NUOVA</button>
     </div>
   );
 };
