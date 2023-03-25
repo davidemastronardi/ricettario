@@ -52,6 +52,7 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
           <button
             onClick={() => {
               navigate("/editRecipe");
+              setRicette(ricette.id)
             }}
             className="w-full mx-4 p-2 bg-slate-900 rounded-md"
           >
