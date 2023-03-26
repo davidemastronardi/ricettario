@@ -69,6 +69,7 @@ const AddRecipe = () => {
   return (
     <div className="w-full h-screen flex flex-col justify-between ">
       <div className="flex flex-col items-center relative">
+        
         <img
           onClick={() => navigate("/")}
           className="w-[30px] absolute left-0 top-2 m-2"
