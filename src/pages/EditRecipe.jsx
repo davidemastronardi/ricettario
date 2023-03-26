@@ -8,7 +8,7 @@ const EditRecipe = () => {
   const navigate = useNavigate();
   const [ricette, setRicette] = useState([]);
   const [value, setValue] = useState("");
-
+console.log("PINO");
 
 
   const getDati = () => {
@@ -16,6 +16,7 @@ const EditRecipe = () => {
       .then((response) => response.json())
       .then((data) => {
         setRicette(data.data);
+
       });
   };
 
@@ -40,7 +41,7 @@ const EditRecipe = () => {
           className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md mt-5"
           type="text"
           placeholder="Titolo"
-          // defaultValue={ricette.attributes.titolo}
+        defaultValue={ricette.attributes?.titolo}
         />
         <div className="w-full mt-5 text-[25px] text-center font-semibold bg-slate-500 text-white p-4">
           Modifica ingredienti
