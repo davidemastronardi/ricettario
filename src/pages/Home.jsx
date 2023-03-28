@@ -31,7 +31,7 @@ const Home = () => {
   return (
     <div>
       <div className="py-4 mb-[85px]">
-        <h1 className="text-center text-[40px] font-bold font-titolo">Le mie Ricette</h1>
+        <h1 className="text-center text-[50px] font-bold font-titolo">Le mie Ricette</h1>
         {renderRicette()}
       </div>
       <button className="fixed bottom-0 bg-blue-600 w-full p-5 text-[30px] font-semibold text-white " onClick={() => navigate("/addRecipe/")}>CREA NUOVA</button>
