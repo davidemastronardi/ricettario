@@ -12,12 +12,15 @@ const AddRecipe = () => {
   const [valueUnit, setValueUnit] = useState("");
   const [valuePreparazione, setValuePreparazione] = useState("");
   const [listIngredient, setListIngredient] = useState([]);
-  const [openControl, setOpenControl]= useState(true);
+  const [openControl, setOpenControl] = useState(true);
 
   function renderListIngredients() {
     return listIngredient.map((ingredient, i) => {
       return (
-        <li className="flex justify-between bg-slate-300 mt-3 p-2" key={i}>
+        <li
+          className="w-full flex justify-between bg-slate-300 mt-3 p-2 sm:max-w-[500px] "
+          key={i}
+        >
           <div className="w-full flex items-baseline gap-5">
             <div className="font-semibold">
               {conversCapitalize(ingredient.name)}
@@ -46,8 +49,8 @@ const AddRecipe = () => {
 
   const handleSubmit = () => {
     if (value == "") {
-      setOpenControl(!openControl)
-      return 
+      setOpenControl(!openControl);
+      return;
     }
     const data = {
       data: {
@@ -64,18 +67,18 @@ const AddRecipe = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => { if (res.status == 200) {
-        navigate("/");
-      } ; return res.json()})
-      .then((response) => {
-        
-       
-      });
+      .then((res) => {
+        if (res.status == 200) {
+          navigate("/");
+        }
+        return res.json();
+      })
+      .then((response) => {});
   };
 
   return (
-    <div className="w-full h-screen flex flex-col justify-between ">
-      <div className="flex flex-col items-center relative">
+    <div className="w-full bg-slate-800 lg:flex lg:justify-center">
+      <div className="w-full xl:w-[1440px] flex flex-col items-center relative bg-white border-x-[5px] border-slate-400">
         <img
           onClick={() => navigate("/")}
           className="w-[30px] absolute left-0 top-2 m-2"
@@ -87,19 +90,20 @@ const AddRecipe = () => {
           Inserisci Titolo:
         </h1>
         <div className="w-full flex flex-col items-center">
-          {!openControl&&<div className="w-full h-10 bg-slate-800 flex items-center">
-            <p className="text-red-500 ml-2">Devi inserire il titolo*</p>
-          </div>}
-        <input
-          value={value}
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
-          className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md mt-5"
-          type="text"
-          placeholder="Titolo"
-        />
-
+          {!openControl && (
+            <div className="w-full h-10 bg-slate-800 flex items-center">
+              <p className="text-red-500 ml-2">Devi inserire il titolo*</p>
+            </div>
+          )}
+          <input
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+            className="w-[80%] sm:max-w-[500px] p-2 border-[2px] border-gray-500  rounded-md mt-5"
+            type="text"
+            placeholder="Titolo"
+          />
         </div>
         <div className="w-full mt-5 text-[25px] text-center font-semibold bg-slate-500 text-white p-4">
           Aggiungi ingredienti
@@ -111,7 +115,7 @@ const AddRecipe = () => {
             onChange={(e) => {
               setValueIngredient(e.target.value);
             }}
-            className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md"
+            className="w-[80%] sm:max-w-[500px] p-2 border-[2px] border-gray-500  rounded-md"
             type="text"
             placeholder="Ingrediente"
           />
@@ -120,13 +124,13 @@ const AddRecipe = () => {
             onChange={(e) => {
               setValueQuantita(e.target.value);
             }}
-            className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md"
+            className="w-[80%] sm:max-w-[500px] p-2 border-[2px] border-gray-500  rounded-md"
             type="number"
             placeholder="Quantità/peso"
           />
 
           <select
-            className="border-gray-500 border-[2px] p-1 rounded-md w-[80%]"
+            className="border-gray-500 border-[2px] p-1 rounded-md w-[80%] sm:max-w-[500px]"
             name="Misure"
             id="Misure"
             onChange={(e) => setValueUnit(e.target.value)}
@@ -155,7 +159,9 @@ const AddRecipe = () => {
         </div>
 
         <div className="text-[20px] w-full px-3 ">
-          <ul>{renderListIngredients()}</ul>
+          <ul className="flex flex-col items-center">
+            {renderListIngredients()}
+          </ul>
         </div>
         <div className=" w-full mt-5 text-[25px] text-center font-semibold bg-slate-500 text-white p-4">
           <h1>Aggiungi preparazione</h1>
@@ -164,7 +170,7 @@ const AddRecipe = () => {
           onChange={(e) => {
             setValuePreparazione(e.target.value);
           }}
-          className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md mb-[100px] mt-5"
+          className="w-[80%] sm:max-w-[500px] p-2 border-[2px] border-gray-500  rounded-md mb-[100px] mt-5"
           cols="30"
           rows="10"
           placeholder="Scrivi la preparazione..."
@@ -174,8 +180,6 @@ const AddRecipe = () => {
         className=" bg-green-600 w-full p-5 text-[30px] font-semibold text-white fixed bottom-0"
         onClick={() => {
           handleSubmit();
-          
-        
         }}
       >
         Salva ricetta
