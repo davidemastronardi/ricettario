@@ -5,7 +5,7 @@ import Ricette from "../components/Ricette";
 const Home = () => {
   const navigate = useNavigate();
   const [ricette, setRicette] = useState([]);
-console.log(...ricette);
+
 
   const getDati = () => {
     fetch("http://localhost:1337/api/ricettes?populate=*")
@@ -21,7 +21,7 @@ console.log(...ricette);
 
 
   function renderRicette() {
-    return ricette.map((ricetta, i) => {
+    return ricette.sort((a, b) => a.attributes.titolo.localeCompare(b.attributes.titolo)).map((ricetta, i) => {
       
       return <Ricette getDati={getDati} key={i} ricette={ricetta} setRicette={setRicette} />;
     });
@@ -31,7 +31,7 @@ console.log(...ricette);
   return (
     <div>
       <div className="py-4 mb-[85px]">
-        <h1 className="text-center text-[40px] font-bold">Le mie Ricette</h1>
+        <h1 className="text-center text-[40px] font-bold font-titolo">Le mie Ricette</h1>
         {renderRicette()}
       </div>
       <button className="fixed bottom-0 bg-blue-600 w-full p-5 text-[30px] font-semibold text-white " onClick={() => navigate("/addRecipe/")}>CREA NUOVA</button>

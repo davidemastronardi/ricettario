@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Pippo";
+    src: url("../src/font/Delicious_Handrawn/DeliciousHandrawn-Regular.ttf");
+}

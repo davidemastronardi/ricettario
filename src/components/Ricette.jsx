@@ -8,8 +8,10 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
   const navigate = useNavigate();
   const [openPreparazione, setOpenPreparazione] = useState(true);
 
+
+
   function renderIngredienti() {
-    return ricette.attributes.ingredients.map((ingrediente, i) => {
+    return ricette.attributes.ingredients.sort((a, b) => a.name.localeCompare(b.name)).map((ingrediente, i) => {
       return (
         <li className="text-[20px] mb-3" key={i}>
           <div className="flex gap-2">

@@ -8,12 +8,12 @@ const EditRecipe = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [ricette, setRicette] = useState([]);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(ricette?.attributes?.titolo);
   const [listIngredient, setListIngredient] = useState([]);
   const [valueIngredient, setValueIngredient] = useState("");
   const [valueQuantita, setValueQuantita] = useState("");
   const [valueUnit, setValueUnit] = useState("");
-  const [valuePreparazione, setValuePreparazione] = useState("");
+  const [valuePreparazione, setValuePreparazione] = useState(ricette?.attributes?.preparazione);
 
   const getDati = () => {
     fetch(process.env.REACT_APP_BASE_PATH + `/ricettes/${id}`)

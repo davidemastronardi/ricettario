@@ -12,6 +12,7 @@ const AddRecipe = () => {
   const [valueUnit, setValueUnit] = useState("");
   const [valuePreparazione, setValuePreparazione] = useState("");
   const [listIngredient, setListIngredient] = useState([]);
+  const [openControl, setOpenControl]= useState(true);
 
   function renderListIngredients() {
     return listIngredient.map((ingredient, i) => {
@@ -44,6 +45,10 @@ const AddRecipe = () => {
   }
 
   const handleSubmit = () => {
+    if (value == "") {
+      setOpenControl(!openControl)
+      return 
+    }
     const data = {
       data: {
         preparazione: valuePreparazione,
@@ -59,9 +64,12 @@ const AddRecipe = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => { if (res.status == 200) {
+        navigate("/");
+      } ; return res.json()})
       .then((response) => {
-        console.log(response);
+        
+       
       });
   };
 
@@ -78,6 +86,10 @@ const AddRecipe = () => {
         <h1 className="w-full p-3 text-center text-[25px] text-white font-semibold bg-slate-500">
           Inserisci Titolo:
         </h1>
+        <div>
+          {!openControl&&<div className="w-full h-10 bg-black flex items-center">
+            <p className="text-white ml-2">devi inserire il titolo*</p>
+          </div>}
         <input
         required
           value={value}
@@ -88,6 +100,8 @@ const AddRecipe = () => {
           type="text"
           placeholder="Titolo"
         />
+
+        </div>
         <div className="w-full mt-5 text-[25px] text-center font-semibold bg-slate-500 text-white p-4">
           Aggiungi ingredienti
         </div>
@@ -161,7 +175,8 @@ const AddRecipe = () => {
         className=" bg-green-600 w-full p-5 text-[30px] font-semibold text-white fixed bottom-0"
         onClick={() => {
           handleSubmit();
-          navigate("/");
+          
+        
         }}
       >
         Salva ricetta
