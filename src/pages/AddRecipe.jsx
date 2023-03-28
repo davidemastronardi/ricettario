@@ -86,12 +86,11 @@ const AddRecipe = () => {
         <h1 className="w-full p-3 text-center text-[25px] text-white font-semibold bg-slate-500">
           Inserisci Titolo:
         </h1>
-        <div>
-          {!openControl&&<div className="w-full h-10 bg-black flex items-center">
-            <p className="text-white ml-2">devi inserire il titolo*</p>
+        <div className="w-full flex flex-col items-center">
+          {!openControl&&<div className="w-full h-10 bg-slate-800 flex items-center">
+            <p className="text-red-500 ml-2">Devi inserire il titolo*</p>
           </div>}
         <input
-        required
           value={value}
           onChange={(e) => {
             setValue(e.target.value);

@@ -113,6 +113,7 @@ const EditRecipe = () => {
 
         <div className="w-full flex flex-col justify-center items-center gap-2 mt-5 ">
           <input
+          value={valueIngredient}
             onChange={(e) => {
               setValueIngredient(e.target.value);
             }}
@@ -121,6 +122,7 @@ const EditRecipe = () => {
             placeholder="Ingrediente"
           />
           <input
+          value={valueQuantita}
             onChange={(e) => {
               setValueQuantita(e.target.value);
             }}
@@ -130,12 +132,13 @@ const EditRecipe = () => {
           />
 
           <select
+          
             onChange={(e) => setValueUnit(e.target.value)}
             className="border-gray-500 border-[2px] p-1 rounded-md w-[80%]"
             name="Misure"
             id="Misure"
           >
-            <option value=""></option>
+            <option selected=""></option>
             <option value="pezzo/i">pezzo/i</option>
             <option value="gr">gr</option>
             <option value="L">L</option>
@@ -150,6 +153,7 @@ const EditRecipe = () => {
               ]);
               setValueIngredient("");
               setValueQuantita("");
+              
             }}
             className="text-[30px] text-center bg-blue-600 text-white px-10 rounded-md font-bold"
           >
