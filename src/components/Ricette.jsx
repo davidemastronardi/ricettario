@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { conversCapitalize } from "../utils";
+import ArrowBotton from "../img/arrowbotton.svg"
+import ArrowTop from "../img/arrowtop.svg"
 
 const Ricette = ({ ricette, setRicette, getDati }) => {
   const navigate = useNavigate();
+  const [openPreparazione, setOpenPreparazione] = useState(true);
 
   function renderIngredienti() {
     return ricette.attributes.ingredients.map((ingrediente, i) => {
@@ -46,13 +49,19 @@ const Ricette = ({ ricette, setRicette, getDati }) => {
           <ul className="  w-full text-white  bg-slate-500 p-3 mt-4 rounded-md text-[12px] flex flex-col items-center">
             {renderIngredienti()}
           </ul>
-          <p className="text-center mt-4">{ricette.attributes.preparazione}</p>
+          <div onClick={()=>setOpenPreparazione(!openPreparazione)} className="flex justify-center mt-5">
+            <h1 className="font-bold">Info preparazione </h1>
+            {openPreparazione?<img className="w-[25px]" src={ArrowBotton} alt="" />:
+            <img className="w-[25px]" src={ArrowTop} alt="" />}
+          </div>
+           {!openPreparazione&& <p className="text-center text-[18px] mt-4">
+              {conversCapitalize(ricette.attributes.preparazione)}
+            </p>}
         </li>
         <div className="flex justify-between mt-5 text-white font-semibold">
           <button
             onClick={() => {
               navigate(`/editRecipe/${ricette.id}`);
-              console.log(ricette.id)
             }}
             className="w-full mx-4 p-2 bg-slate-900 rounded-md"
           >

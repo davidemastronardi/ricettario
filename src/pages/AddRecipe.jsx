@@ -13,7 +13,6 @@ const AddRecipe = () => {
   const [valuePreparazione, setValuePreparazione] = useState("");
   const [listIngredient, setListIngredient] = useState([]);
 
-
   function renderListIngredients() {
     return listIngredient.map((ingredient, i) => {
       return (
@@ -69,7 +68,6 @@ const AddRecipe = () => {
   return (
     <div className="w-full h-screen flex flex-col justify-between ">
       <div className="flex flex-col items-center relative">
-        
         <img
           onClick={() => navigate("/")}
           className="w-[30px] absolute left-0 top-2 m-2"
@@ -81,6 +79,7 @@ const AddRecipe = () => {
           Inserisci Titolo:
         </h1>
         <input
+        required
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
@@ -121,6 +120,7 @@ const AddRecipe = () => {
           >
             <option value=""></option>
             <option value="pezzo/i">pezzo/i</option>
+            <option value="q.b">q.b</option>
             <option value="gr">gr</option>
             <option value="L">L</option>
             <option value="ml">ml</option>
@@ -148,9 +148,9 @@ const AddRecipe = () => {
           <h1>Aggiungi preparazione</h1>
         </div>
         <textarea
-         onChange={(e) => {
-          setValuePreparazione(e.target.value);
-        }}
+          onChange={(e) => {
+            setValuePreparazione(e.target.value);
+          }}
           className="w-[80%] p-2 border-[2px] border-gray-500  rounded-md mb-[100px] mt-5"
           cols="30"
           rows="10"

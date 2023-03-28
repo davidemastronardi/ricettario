@@ -5,7 +5,7 @@ import Ricette from "../components/Ricette";
 const Home = () => {
   const navigate = useNavigate();
   const [ricette, setRicette] = useState([]);
-
+console.log(...ricette);
 
   const getDati = () => {
     fetch("http://localhost:1337/api/ricettes?populate=*")
@@ -19,9 +19,11 @@ const Home = () => {
     getDati();
   }, []);
 
+
   function renderRicette() {
-    return ricette.map((ricette, i) => {
-      return <Ricette getDati={getDati} key={i} ricette={ricette} setRicette={setRicette} />;
+    return ricette.map((ricetta, i) => {
+      
+      return <Ricette getDati={getDati} key={i} ricette={ricetta} setRicette={setRicette} />;
     });
   }
 
@@ -32,7 +34,7 @@ const Home = () => {
         <h1 className="text-center text-[40px] font-bold">Le mie Ricette</h1>
         {renderRicette()}
       </div>
-      <button className="fixed bottom-0 bg-slate-900 w-full p-5 text-[30px] font-semibold text-white " onClick={() => navigate("/addRecipe/")}>CREA NUOVA</button>
+      <button className="fixed bottom-0 bg-blue-600 w-full p-5 text-[30px] font-semibold text-white " onClick={() => navigate("/addRecipe/")}>CREA NUOVA</button>
     </div>
   );
 };
